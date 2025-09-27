@@ -183,6 +183,7 @@ GROUP BY 1
 SELECT * FROM members
 WHERE reg_date >= CURRENT_DATE - INTERVAL '180 days';
 #### 10.List Employees with Their Branch Manager's Name and their branch details:
+```
 SELECT 
     e1.emp_id,
     e1.emp_name,
@@ -197,6 +198,7 @@ ON e1.branch_id = b.branch_id
 JOIN
 employees as e2
 ON e2.emp_id = b.manager_id
+```
 #### Task 11. Create a Table of Books with Rental Price Above a Certain Threshold:
 ```
 CREATE TABLE expensive_books AS
@@ -215,7 +217,7 @@ WHERE rs.return_id IS NULL;
 
 #### Advanced SQL Operations
 ## Task 13: Identify Members with Overdue Books
-Write a query to identify members who have overdue books (assume a 30-day return period). Display the member's_id, member's name, book title, issue date, and days overdue.
+## Write a query to identify members who have overdue books (assume a 30-day return period). Display the member's_id, member's name, book title, issue date, and days overdue.
 
 ```
 SELECT 
@@ -242,7 +244,7 @@ WHERE
 ORDER BY 1
 ```
 #### Task 14: Update Book Status on Return
-Write a query to update the status of books in the books table to "Yes" when they are returned (based on entries in the return_status table).
+#### Write a query to update the status of books in the books table to "Yes" when they are returned (based on entries in the return_status table).
 
 
 ```
@@ -303,7 +305,7 @@ CALL add_return_records('RS148', 'IS140', 'Good');
 
 ```
 #### Task 15: Branch Performance Report
-Create a query that generates a performance report for each branch, showing the number of books issued, the number of books returned, and the total revenue generated from book rentals.
+#### Create a query that generates a performance report for each branch, showing the number of books issued, the number of books returned, and the total revenue generated from book rentals.
 
 ```
 CREATE TABLE branch_reports
@@ -333,7 +335,7 @@ SELECT * FROM branch_reports;
 ```
 
  #### Task 18: Identify Members Issuing High-Risk Books
-Write a query to identify members who have issued books more than twice with the status "damaged" in the books table. Display the member name, book title, and the number of times they've issued damaged books.
+#### Write a query to identify members who have issued books more than twice with the status "damaged" in the books table. Display the member name, book title, and the number of times they've issued damaged books.
 
 #### Task 19: Stored Procedure Objective: Create a stored procedure to manage the status of books in a library system. Description: Write a stored procedure that updates the status of a book in the library based on its issuance. The procedure should function as follows: The stored procedure should take the book_id as an input parameter. The procedure should first check if the book is available (status = 'yes'). If the book is available, it should be issued, and the status in the books table should be updated to 'no'. If the book is not available (status = 'no'), the procedure should return an error message indicating that the book is currently not available.
 
@@ -391,14 +393,14 @@ WHERE isbn = '978-0-375-41398-8'
 
 #### Task 20: Create Table As Select (CTAS) Objective: Create a CTAS (Create Table As Select) query to identify overdue books and calculate fines.
 
-Description: Write a CTAS query to create a new table that lists each member and the books they have issued but not returned within 30 days. The table should include: The number of overdue books. The total fines, with each day's fine calculated at $0.50. The number of books issued by each member. The resulting table should show: Member ID Number of overdue books Total fines
+## Description: Write a CTAS query to create a new table that lists each member and the books they have issued but not returned within 30 days. The table should include: The number of overdue books. The total fines, with each day's fine calculated at $0.50. The number of books issued by each member. The resulting table should show: Member ID Number of overdue books Total fines
 
 #### Reports
 ## .Database Schema: Detailed table structures and relationships.
 ## .Data Analysis: Insights into book categories, employee salaries, member registration trends, and issued books.
 ## .Summary Reports: Aggregated data on high-demand books and employee performance.
 #### Conclusion
-This project demonstrates the application of SQL skills in creating and managing a library management system. It includes database setup, data manipulation, and advanced querying, providing a solid foundation for data management and analysis.
+#### This project demonstrates the application of SQL skills in creating and managing a library management system. It includes database setup, data manipulation, and advanced querying, providing a solid foundation for data management and analysis.
 
 #### How to Use
 ## 1. Clone the Repository: Clone this repository to your local machine.
@@ -410,5 +412,5 @@ This project demonstrates the application of SQL skills in creating and managing
 
 ## 4. Explore and Modify: Customize the queries as needed to explore different aspects of the data or answer additional questions.
 
-#### Author - Zero Analyst
+#### Author 
 This project showcases SQL skills essential for database management and analysis. For more content on SQL and data analysis, connect with me through the following channels:
