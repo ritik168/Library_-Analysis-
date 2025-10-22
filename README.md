@@ -116,13 +116,14 @@ CREATE TABLE return_status
 );
 ```
 #### 2. CRUD Operations
-####.Create: Inserted sample records into the books table.
-#### .Read: Retrieved and displayed data from various tables.
-#### .Update: Updated records in the employees table.
-#### .Delete: Removed records from the members table as needed.
+        Create: Inserted sample records                     into the books table.
+        Read: Retrieved and displayed data from various tables.
+        Update: Updated records in the employees table.
+        Delete: Removed records from the members table as needed.
 
 
-#### .Task 1. Create a New Book Record -- "978-1-60129-456-2', 'To Kill a Mockingbird', 'Classic', 6.00, 'yes', 'Harper Lee', 'J.B. Lippincott & Co.')"
+#### Task 1. 
+Create a New Book Record -- "978-1-60129-456-2', 'To Kill a Mockingbird', 'Classic', 6.00, 'yes', 'Harper Lee', 'J.B. Lippincott & Co.')"
 
 ```
 INSERT INTO books(isbn, book_title, category, rental_price, status, author, publisher)
@@ -130,24 +131,28 @@ VALUES('978-1-60129-456-2', 'To Kill a Mockingbird', 'Classic', 6.00, 'yes', 'Ha
 SELECT * FROM books;
 ```
 
-## Task 2: Update an Existing Member's Address
+#### Task 2: 
+Update an Existing Member's Address
 ```
 UPDATE members
 SET member_address = '125 Oak St'
 WHERE member_id = 'C103';
 ```
 
-#### Task 3: Delete a Record from the Issued Status Table -- Objective: Delete the record with issued_id = 'IS121' from the issued_status table.
+#### Task 3: 
+Delete a Record from the Issued Status Table -- Objective: Delete the record with issued_id = 'IS121' from the issued_status table.
 ```
 DELETE FROM issued_status
 WHERE   issued_id =   'IS121';
-Task 4: Retrieve All Books Issued by a Specific Employee -- Objective: Select all books issued by the employee with emp_id = 'E101'.
+#### Task 4:
+Retrieve All Books Issued by a Specific Employee -- Objective: Select all books issued by the employee with emp_id = 'E101'.
 ```
 ```
 SELECT * FROM issued_status
 WHERE issued_emp_id = 'E101'
 ````
-#### Task 5: List Members Who Have Issued More Than One Book -- Objective: Use GROUP BY to find members who have issued more than one book.
+#### Task 5: 
+List Members Who Have Issued More Than One Book -- Objective: Use GROUP BY to find members who have issued more than one book.
 
 ```
 SELECT
@@ -158,8 +163,9 @@ GROUP BY 1
 HAVING COUNT(*) > 1
 ```
 
-#### 3. CTAS (Create Table As Select)
-## . Task 6: Create Summary Tables: Used CTAS to generate new tables based on query results - each book and total book_issued_cnt**
+## 3.CTAS (Create Table As Select)
+#### Task 6: 
+Create Summary Tables: Used CTAS to generate new tables based on query results - each book and total book_issued_cnt**
 
 ```
 CREATE TABLE book_issued_cnt AS
@@ -170,15 +176,17 @@ ON ist.issued_book_isbn = b.isbn
 GROUP BY b.isbn, b.book_title;
 ```
 
-#### 4. Data Analysis & Findings
+## 4. Data Analysis & Findings
 The following SQL queries were used to address specific questions:
 
-#### .Task 7. Retrieve All Books in a Specific Category:
+#### Task 7. 
+Retrieve All Books in a Specific Category:
 
 ```
 SELECT * FROM books
 WHERE category = 'Classic';
-Task 8: Find Total Rental Income by Category:
+#### Task 8: 
+Find Total Rental Income by Category:
 SELECT 
     b.category,
     SUM(b.rental_price),
@@ -191,10 +199,12 @@ ON b.isbn = ist.issued_book_isbn
 GROUP BY 1
 ```
 
-#### 9.List Members Who Registered in the Last 180 Days:
+#### Task 9.
+List Members Who Registered in the Last 180 Days:
 SELECT * FROM members
 WHERE reg_date >= CURRENT_DATE - INTERVAL '180 days';
-#### 10.List Employees with Their Branch Manager's Name and their branch details:
+#### Task 10.
+List Employees with Their Branch Manager's Name and their branch details:
 ```
 SELECT 
     e1.emp_id,
@@ -211,13 +221,15 @@ JOIN
 employees as e2
 ON e2.emp_id = b.manager_id
 ```
-#### Task 11. Create a Table of Books with Rental Price Above a Certain Threshold:
+#### Task 11. 
+Create a Table of Books with Rental Price Above a Certain Threshold:
 ```
 CREATE TABLE expensive_books AS
 SELECT * FROM books
 WHERE rental_price > 7.00;
 ```
-#### Task 12: Retrieve the List of Books Not Yet Returned
+#### Task 12.
+Retrieve the List of Books Not Yet Returned
 
 ```
 SELECT * FROM issued_status as ist
@@ -227,9 +239,11 @@ ON rs.issued_id = ist.issued_id
 WHERE rs.return_id IS NULL;
 ```
 
-#### Advanced SQL Operations
-## Task 13: Identify Members with Overdue Books
-## Write a query to identify members who have overdue books (assume a 30-day return period). Display the member's_id, member's name, book title, issue date, and days overdue.
+## Advanced SQL Operations
+#### Task 13. 
+Identify Members with Overdue Books
+#### Task 14.
+Write a query to identify members who have overdue books (assume a 30-day return period). Display the member's_id, member's name, book title, issue date, and days overdue.
 
 ```
 SELECT 
@@ -255,8 +269,10 @@ WHERE
     (CURRENT_DATE - ist.issued_date) > 30
 ORDER BY 1
 ```
-#### Task 14: Update Book Status on Return
-#### Write a query to update the status of books in the books table to "Yes" when they are returned (based on entries in the return_status table).
+#### Task 14.
+Update Book Status on Return
+#### Task 15.
+Write a query to update the status of books in the books table to "Yes" when they are returned (based on entries in the return_status table).
 
 
 ```
@@ -316,8 +332,9 @@ CALL add_return_records('RS138', 'IS135', 'Good');
 CALL add_return_records('RS148', 'IS140', 'Good');
 
 ```
-#### Task 15: Branch Performance Report
-#### Create a query that generates a performance report for each branch, showing the number of books issued, the number of books returned, and the total revenue generated from book rentals.
+#### Branch Performance Report
+#### Task 15.
+Create a query that generates a performance report for each branch, showing the number of books issued, the number of books returned, and the total revenue generated from book rentals.
 
 ```
 CREATE TABLE branch_reports
@@ -346,10 +363,12 @@ GROUP BY 1, 2;
 SELECT * FROM branch_reports;
 ```
 
- #### Task 18: Identify Members Issuing High-Risk Books
-#### Write a query to identify members who have issued books more than twice with the status "damaged" in the books table. Display the member name, book title, and the number of times they've issued damaged books.
+## Identify Members Issuing High-Risk                  Books
+#### Task 16.
+Write a query to identify members who have issued books more than twice with the status "damaged" in the books table. Display the member name, book title, and the number of times they've issued damaged books.
 
-#### Task 19: Stored Procedure Objective: Create a stored procedure to manage the status of books in a library system. Description: Write a stored procedure that updates the status of a book in the library based on its issuance. The procedure should function as follows: The stored procedure should take the book_id as an input parameter. The procedure should first check if the book is available (status = 'yes'). If the book is available, it should be issued, and the status in the books table should be updated to 'no'. If the book is not available (status = 'no'), the procedure should return an error message indicating that the book is currently not available.
+## Stored Procedure Objective: Create a stored procedure to manage the status of books in a library system. Description: #### Task 17.
+Write a stored procedure that updates the status of a book in the library based on its issuance. The procedure should function as follows: The stored procedure should take the book_id as an input parameter. The procedure should first check if the book is available (status = 'yes'). If the book is available, it should be issued, and the status in the books table should be updated to 'no'. If the book is not available (status = 'no'), the procedure should return an error message indicating that the book is currently not available.
 
 ```
 CREATE OR REPLACE PROCEDURE issue_book(p_issued_id VARCHAR(10), p_issued_member_id VARCHAR(30), p_issued_book_isbn VARCHAR(30), p_issued_emp_id VARCHAR(10))
@@ -403,15 +422,16 @@ WHERE isbn = '978-0-375-41398-8'
 
 ```
 
-#### Task 20: Create Table As Select (CTAS) Objective: Create a CTAS (Create Table As Select) query to identify overdue books and calculate fines.
+## Create Table As Select (CTAS) Objective: Create a CTAS (Create Table As Select) query to identify overdue books and calculate fines.
 
-## Description: Write a CTAS query to create a new table that lists each member and the books they have issued but not returned within 30 days. The table should include: The number of overdue books. The total fines, with each day's fine calculated at $0.50. The number of books issued by each member. The resulting table should show: Member ID Number of overdue books Total fines
+#### Task 18.
+Description: Write a CTAS query to create a new table that lists each member and the books they have issued but not returned within 30 days. The table should include: The number of overdue books. The total fines, with each day's fine calculated at $0.50. The number of books issued by each member. The resulting table should show: Member ID Number of overdue books Total fines
 
-#### Reports
-## .Database Schema: Detailed table structures and relationships.
-## .Data Analysis: Insights into book categories, employee salaries, member registration trends, and issued books.
-## .Summary Reports: Aggregated data on high-demand books and employee performance.
-#### Conclusion
+## Reports
+.Database Schema: Detailed table structures and relationships.
+.Data Analysis: Insights into book categories, employee salaries, member registration trends, and issued books.
+.Summary Reports: Aggregated data on high-demand books and employee performance.
+## Conclusion
 #### This project demonstrates the application of SQL skills in creating and managing a library management system. It includes database setup, data manipulation, and advanced querying, providing a solid foundation for data management and analysis.
 
 #### How to Use
