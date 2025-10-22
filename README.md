@@ -130,7 +130,7 @@ VALUES('978-1-60129-456-2', 'To Kill a Mockingbird', 'Classic', 6.00, 'yes', 'Ha
 SELECT * FROM books;
 ```
 
-#### Task 2: Update an Existing Member's Address
+## Task 2: Update an Existing Member's Address
 ```
 UPDATE members
 SET member_address = '125 Oak St'
