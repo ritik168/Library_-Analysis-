@@ -1,7 +1,10 @@
 # Library Management System using SQL Project --P2
 #### Project Overview
+
 #### Project Title: Library Management System
+
 #### Level: Intermediate
+
 #### Database: library_db
 
 This project demonstrates the implementation of a Library Management System using SQL. It includes creating and managing tables, performing CRUD operations, and executing advanced SQL queries. The goal is to showcase skills in database design, manipulation, and querying.
@@ -141,11 +144,16 @@ WHERE member_id = 'C103';
 
 #### Task 3: 
 Delete a Record from the Issued Status Table -- Objective: Delete the record with issued_id = 'IS121' from the issued_status table.
+
 ```
 DELETE FROM issued_status
 WHERE   issued_id =   'IS121';
+
 #### Task 4:
-Retrieve All Books Issued by a Specific Employee -- Objective: Select all books issued by the employee with emp_id = 'E101'.
+
+Retrieve All Books Issued by a Specific Employee
+```
+Select all books issued by the employee with emp_id = 'E101'.
 ```
 ```
 SELECT * FROM issued_status
@@ -240,8 +248,7 @@ WHERE rs.return_id IS NULL;
 ```
 
 ## Advanced SQL Operations
-#### Task 13. 
-Identify Members with Overdue Books
+
 #### Task 14.
 Write a query to identify members who have overdue books (assume a 30-day return period). Display the member's_id, member's name, book title, issue date, and days overdue.
 
@@ -332,7 +339,7 @@ CALL add_return_records('RS138', 'IS135', 'Good');
 CALL add_return_records('RS148', 'IS140', 'Good');
 
 ```
-#### Branch Performance Report
+## Branch Performance Report
 #### Task 15.
 Create a query that generates a performance report for each branch, showing the number of books issued, the number of books returned, and the total revenue generated from book rentals.
 
@@ -435,14 +442,16 @@ Description: Write a CTAS query to create a new table that lists each member and
 #### This project demonstrates the application of SQL skills in creating and managing a library management system. It includes database setup, data manipulation, and advanced querying, providing a solid foundation for data management and analysis.
 
 #### How to Use
-## 1. Clone the Repository: Clone this repository to your local machine.
+1. Clone the Repository: Clone this repository to your local machine.
 
-## 2. git clone https://github.com/najirh/Library-System-Management---P2.git
-## 3. Set Up the Database: Execute the SQL scripts in the database_setup.sql file to create and populate the database.
+2. git clone https://github.com/najirh/Library-System-Management---P2.git
 
-## 4. Run the Queries: Use the SQL queries in the analysis_queries.sql file to perform the analysis.
+3. Set Up the Database: Execute the SQL scripts in the database_setup.sql file to create and populate the database.
 
-## 4. Explore and Modify: Customize the queries as needed to explore different aspects of the data or answer additional questions.
+4. Run the Queries: Use the SQL queries in the analysis_queries.sql file to perform the analysis.
+
+5. Explore and Modify: Customize the queries as needed to explore different aspects of the data or answer additional questions.
 
 #### Author 
+
 This project showcases SQL skills essential for database management and analysis. For more content on SQL and data analysis, connect with me through the following channels:
